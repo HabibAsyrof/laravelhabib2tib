@@ -12,7 +12,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //
+        $pelanggan = Pelanggan::all();
+        return view('admin.pelanggan.index', compact('pelanggan'));
     }
 
     /**
@@ -28,7 +29,7 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        // @dd($request->all());
+        //  @dd($request->all());
         $data = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -55,15 +56,38 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Mengambil data pelanggan berdasarkan ID
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        // Mengirim data pelanggan ke halaman edit
+        return view('admin.pelanggan.edit', compact('pelanggan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    { {
+            // Validasi data yang dikirim
+            $data = $request->validate([
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'birthday' => 'required|date',
+                'gender' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required|string|max:30'
+            ]);
+
+            // Mencari pelanggan berdasarkan ID
+            $pelanggan = Pelanggan::findOrFail($id);
+
+            // Memperbarui data pelanggan
+            $pelanggan->update($data);
+
+            // Kembali ke halaman index
+            return redirect()->route('pelanggan.index')
+                ->with('success', 'Data pelanggan berhasil diperbarui.');
+        }
     }
 
     /**
@@ -71,6 +95,14 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Mencari pelanggan berdasarkan ID
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        // Menghapus data pelanggan dari database
+        $pelanggan->delete();
+
+        // Kembali ke halaman index
+        return redirect()->route('pelanggan.index')
+            ->with('success', 'Data pelanggan berhasil dihapus.');
     }
 }
