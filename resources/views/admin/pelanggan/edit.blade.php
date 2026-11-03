@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Pelanggan</title>
-    <link rel="stylesheet"
-          href="{{ asset('assets-admin/css/volt.css') }}">
-</head>
-<body>
-
+@extends('layouts.admin.app')
+@section('content')
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -90,6 +82,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+@endsection
