@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
@@ -19,17 +18,13 @@
     <link rel="mask-icon" href="{{ asset('assets-admin/img/favicon/safari-pinned-tab.svg') }}" color="#ffffff">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-
     <!-- Volt CSS -->
     @include('layouts.admin.css')
-
 </head>
-
 <body>
     {{-- start sidebar --}}
     @include('layouts.admin.sidebar')
     {{-- end sidebar --}}
-
     <main class="content">
 
         {{-- start main content --}}
@@ -39,7 +34,5 @@
         @include('layouts.admin.footer')
     </main>
     @include('layouts.admin.js')
-
 </body>
-
 </html>

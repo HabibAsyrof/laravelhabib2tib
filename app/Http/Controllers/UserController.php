@@ -30,13 +30,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
+        $user = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ];
 
-        User::create($data);
+        User::create($user);
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
 
